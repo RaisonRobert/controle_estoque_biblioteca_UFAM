@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Controle de Estoque Biblioteca</string>
+    <string name="bem_vindo">Bem Vindo</string>
+    <string name="escolha_uma_op_o">Escolha uma opção:</string>
+    <string name="registrar">Registrar</string>
+    <string name="atualizar">Atualizar</string>
+    <string name="pesquisar">Pesquisar</string>
+    <string name="remover">Remover</string>
+    <string name="digite_o_nome_do_livro">Digite o nome do livro</string>
+</resources>
