@@ -4,18 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import br.edu.ufam.controledeestoquebiblioteca.R
 import br.edu.ufam.controledeestoquebiblioteca.model.banco.AppDatabase
 import br.edu.ufam.controledeestoquebiblioteca.model.banco.DadosDao
+import br.edu.ufam.controledeestoquebiblioteca.model.entidade.DadosLivro
+import br.edu.ufam.controledeestoquebiblioteca.view.adapter.ListarLivrosAdapter
 import kotlinx.android.synthetic.main.header_simple.*
+import kotlinx.android.synthetic.main.layout_atualizar_fragment.*
 import kotlinx.android.synthetic.main.layout_header.*
-import kotlinx.android.synthetic.main.layout_registrar_fragment.*
 
-class RegistrarFragment: Fragment() {
+class AtualizarFragment: Fragment() {
     private lateinit var userDao: DadosDao
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,32 +30,29 @@ class RegistrarFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.layout_registrar_fragment, container, false)
+        return inflater.inflate(R.layout.layout_atualizar_fragment, container, false)
     }
-
+    private lateinit var adapterLivro:ListarLivrosAdapter
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        adapterLivro = ListarLivrosAdapter(::onCopyClick)
         onConfigLayout()
         onConfigBtn()
     }
-
-    private fun onConfigBtn() {
-        btn_salvar.setOnClickListener {
-            if(verificaCampos()){
-
-            }else{
-                Toast.makeText(requireContext(),getString(R.string.msg_campo_vazio),Toast.LENGTH_SHORT).show()
-            }
-        }
+    private fun addVoucher() {
+            adapterLivro.insertItems(userDao.buscarDados())
     }
 
-    private fun verificaCampos(): Boolean {
-        return !nome_field_livro.text.isNullOrEmpty() &&
-                !ano_field_livro.text.isNullOrEmpty() &&
-                !qtd_field_livro.text.isNullOrEmpty() &&
-                !editora_field_livro.text.isNullOrEmpty() &&
-                !autores_field_livro.text.isNullOrEmpty() &&
-                !isbn_field_livro.text.isNullOrEmpty()
+    private fun setupRecyclerView() {
+        rv_livro.layoutManager = LinearLayoutManager(requireContext())
+        rv_livro.adapter = adapterLivro
+    }
+    private fun onCopyClick(dadosLivro: DadosLivro) {
+        TODO("Not yet implemented")
+    }
+
+    private fun onConfigBtn() {
+        TODO("Not yet implemented")
     }
 
     private fun onConfigLayout() {

@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import br.edu.ufam.controledeestoquebiblioteca.R
 import br.edu.ufam.controledeestoquebiblioteca.model.banco.AppDatabase
 import br.edu.ufam.controledeestoquebiblioteca.model.banco.DadosDao
-import br.edu.ufam.controledeestoquebiblioteca.model.entidade.DadosLivro
 import br.edu.ufam.controledeestoquebiblioteca.view.adapter.MenuSquareItemAdapter
 import br.edu.ufam.controledeestoquebiblioteca.view.util.MenuSquareItem
 import kotlinx.android.synthetic.main.header_simple.*
@@ -44,6 +43,7 @@ class HomeFragment : Fragment() {
         setupMenu()
         setHeader()
     }
+
     /**
      * Método criado para setar os itens da Header
      * @param view View
