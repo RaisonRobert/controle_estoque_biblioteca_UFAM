@@ -4,15 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.edu.ufam.controledeestoquebiblioteca.R
+import br.edu.ufam.controledeestoquebiblioteca.model.banco.AppDatabase
+import br.edu.ufam.controledeestoquebiblioteca.model.banco.DadosDao
+import br.edu.ufam.controledeestoquebiblioteca.model.entidade.DadosLivro
 import br.edu.ufam.controledeestoquebiblioteca.view.adapter.MenuSquareItemAdapter
 import br.edu.ufam.controledeestoquebiblioteca.view.util.MenuSquareItem
 import kotlinx.android.synthetic.main.header_simple.*
@@ -20,11 +21,14 @@ import kotlinx.android.synthetic.main.layout_header.*
 import kotlinx.android.synthetic.main.layout_home_fragment.*
 
 class HomeFragment : Fragment() {
+    private lateinit var userDao: DadosDao
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: GridLayoutManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val db = AppDatabase.instancia(requireContext())
+        userDao = db.userDao()
     }
 
     override fun onCreateView(
