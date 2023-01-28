@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.header_simple.*
 import kotlinx.android.synthetic.main.layout_header.*
 import kotlinx.android.synthetic.main.layout_registrar_fragment.*
 
-class RegistrarFragment : Fragment() {
+class AtualizarDadosFragment : Fragment() {
     private lateinit var userDao: DadosDao
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,10 +41,12 @@ class RegistrarFragment : Fragment() {
     }
 
     private fun onConfigBtn() {
+        btn_salvar.text = getString(R.string.atualizar)
         btn_salvar.setOnClickListener {
             if (verificaCampos()) {
-                userDao.salvaDados(
+                userDao.alterarDados(
                     DadosLivro(
+                        id = Ui.dados.id,
                         nomeLivro = nome_field_livro.text.toString(),
                         ano = ano_field_livro.text!!.paraInt(),
                         quantidade = qtd_field_livro.text!!.paraInt(),
@@ -81,12 +83,22 @@ class RegistrarFragment : Fragment() {
     }
 
     private fun onConfigLayout() {
+        setDadosField()
         toolbar.setNavigationIcon(R.drawable.ic_arrow)
         toolbar.title = ""
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
         title_toolbar.text = getString(R.string.registrar)
         toolbar.setNavigationOnClickListener {
-            findNavController().popBackStack(R.id.home, false)
+            findNavController().popBackStack()
         }
+    }
+
+    private fun setDadosField() {
+        nome_field_livro.setText(Ui.dados.nomeLivro)
+        ano_field_livro.setText(Ui.dados.ano.toString())
+        qtd_field_livro.setText(Ui.dados.quantidade.toString())
+        editora_field_livro.setText(Ui.dados.editor)
+        autores_field_livro.setText(Ui.dados.autor)
+        isbn_field_livro.setText(Ui.dados.isbn)
     }
 }

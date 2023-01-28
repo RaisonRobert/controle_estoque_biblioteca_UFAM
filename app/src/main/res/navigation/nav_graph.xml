@@ -16,10 +16,34 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        <action
+            android:id="@+id/action_home_to_atualizar"
+            app:destination="@id/atualizar"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
     </fragment>
     <fragment android:id="@+id/registrar"
         android:name="br.edu.ufam.controledeestoquebiblioteca.view.fragment.RegistrarFragment"
         android:label="Registrar"
         tools:layout="@layout/layout_registrar_fragment"
         />
+    <fragment android:id="@+id/atualizar"
+        android:name="br.edu.ufam.controledeestoquebiblioteca.view.fragment.AtualizarFragment"
+        android:label="Atualizar"
+        tools:layout="@layout/layout_atualizar_fragment">
+        <action
+            android:id="@+id/action_atualizar_to_atualizar_dados"
+            app:destination="@id/atualizar_dados"
+
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+    </fragment>
+    <fragment android:id="@+id/atualizar_dados"
+        android:name="br.edu.ufam.controledeestoquebiblioteca.view.fragment.AtualizarDadosFragment"
+        android:label="Atualizar Dados"
+        tools:layout="@layout/layout_registrar_fragment"/>
 </navigation>

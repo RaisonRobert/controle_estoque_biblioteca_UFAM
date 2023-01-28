@@ -7,16 +7,23 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.edu.ufam.controledeestoquebiblioteca.R
 import br.edu.ufam.controledeestoquebiblioteca.model.entidade.DadosLivro
+import kotlinx.android.synthetic.main.item_livro_card.view.*
 
-class ListarLivrosAdapter (private val onCopyClick:(codeCopy: DadosLivro)->Unit):
+class ListarLivrosAdapter (private val onClick:(codeCopy: DadosLivro)->Unit):
         RecyclerView.Adapter<ListarLivrosAdapter.LivrosViewHolder>() {
         private val list: MutableList<DadosLivro> = mutableListOf()
 
         inner class LivrosViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
             fun bind(item: DadosLivro){
                 item.let{code->
+                    itemView.txt_nome.text = "Livro: " + code.nomeLivro
+                    itemView.txt_ano.text = "Ano: " + code.ano.toString()
+                    itemView.txt_autor.text = "Autor: " + code.autor
+                    itemView.txt_editora.text = "Editora: " + code.editor
+                    itemView.txt_quantidade.text = "Quantidade: "+code.quantidade.toString()
+                    itemView.txt_isbn.text = "ISBN: "+code.isbn
                     itemView.setOnClickListener{
-                        onCopyClick(code)
+                        onClick(code)
                     }
                 }
             }

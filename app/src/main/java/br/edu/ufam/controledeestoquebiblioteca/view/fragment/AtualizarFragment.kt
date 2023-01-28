@@ -13,6 +13,7 @@ import br.edu.ufam.controledeestoquebiblioteca.model.banco.AppDatabase
 import br.edu.ufam.controledeestoquebiblioteca.model.banco.DadosDao
 import br.edu.ufam.controledeestoquebiblioteca.model.entidade.DadosLivro
 import br.edu.ufam.controledeestoquebiblioteca.view.adapter.ListarLivrosAdapter
+import br.edu.ufam.controledeestoquebiblioteca.view.util.Ui
 import kotlinx.android.synthetic.main.header_simple.*
 import kotlinx.android.synthetic.main.layout_atualizar_fragment.*
 import kotlinx.android.synthetic.main.layout_header.*
@@ -35,9 +36,11 @@ class AtualizarFragment: Fragment() {
     private lateinit var adapterLivro:ListarLivrosAdapter
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapterLivro = ListarLivrosAdapter(::onCopyClick)
+        adapterLivro = ListarLivrosAdapter(::onClick)
         onConfigLayout()
         onConfigBtn()
+        addVoucher()
+        setupRecyclerView()
     }
     private fun addVoucher() {
             adapterLivro.insertItems(userDao.buscarDados())
@@ -47,19 +50,20 @@ class AtualizarFragment: Fragment() {
         rv_livro.layoutManager = LinearLayoutManager(requireContext())
         rv_livro.adapter = adapterLivro
     }
-    private fun onCopyClick(dadosLivro: DadosLivro) {
-        TODO("Not yet implemented")
+    private fun onClick(dadosLivro: DadosLivro) {
+        Ui.dados = dadosLivro
+        findNavController().navigate(R.id.action_atualizar_to_atualizar_dados)
     }
 
     private fun onConfigBtn() {
-        TODO("Not yet implemented")
+
     }
 
     private fun onConfigLayout() {
         toolbar.setNavigationIcon(R.drawable.ic_arrow)
         toolbar.title = ""
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
-        title_toolbar.text = getString(R.string.registrar)
+        title_toolbar.text = getString(R.string.atualizar)
         toolbar.setNavigationOnClickListener {
             findNavController().popBackStack(R.id.home, false)
         }

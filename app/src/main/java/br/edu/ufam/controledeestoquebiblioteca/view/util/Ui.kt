@@ -6,9 +6,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import br.edu.ufam.controledeestoquebiblioteca.R
+import br.edu.ufam.controledeestoquebiblioteca.model.entidade.DadosLivro
 import kotlinx.android.synthetic.main.dialog_modal.view.*
 
 object Ui {
+    lateinit var dados: DadosLivro
     /**
      *
      * Sobrecarga do método que cria modal padrão do load

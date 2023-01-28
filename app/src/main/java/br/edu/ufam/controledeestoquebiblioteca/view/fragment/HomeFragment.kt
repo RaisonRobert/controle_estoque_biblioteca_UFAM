@@ -86,8 +86,7 @@ class HomeFragment : Fragment() {
                     findNavController().navigate(R.id.action_home_to_registrar)
                 }
                 R.drawable.ic_atualizar -> {
-                    Toast.makeText(requireContext(), "Cliquei em Atualizar", Toast.LENGTH_SHORT)
-                        .show()
+                    findNavController().navigate(R.id.action_home_to_atualizar)
                 }
                 R.drawable.ic_pesquisar -> {
                     Toast.makeText(requireContext(), "Cliquei em Pesquisar", Toast.LENGTH_SHORT)
